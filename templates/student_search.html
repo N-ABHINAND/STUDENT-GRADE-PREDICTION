@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Search Result</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial;
+            background: linear-gradient(120deg, #fafdff 0%, #c2d6ff 100%);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto 40px auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 14px 48px rgba(44,104,255,0.11), 0 3px 8px rgba(0,0,0,0.07);
+            padding: 55px 60px 40px 60px;
+        }
+        h1 {
+            color: #2196f3;
+            font-size: 2.7em;
+            margin-bottom: 36px;
+            letter-spacing: 1px;
+        }
+        .student-card {
+            background: #f6fafe;
+            border-radius: 16px;
+            padding: 34px 36px;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 18px rgba(44,104,255,0.10);
+        }
+        .card-row {
+            margin-bottom: 19px;
+            display: flex;
+            gap: 38px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .label {
+            font-size: 1.35em;
+            font-weight: 600;
+            color: #1865bf;
+            margin-right: 6px;
+            letter-spacing: 1px;
+            width: 210px;
+            display: inline-block;
+        }
+        .value {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: #373737;
+            letter-spacing: 0.5px;
+        }
+        .grade-label {
+            font-size: 1.35em;
+            font-weight: 600;
+            color: #b08115;
+            margin-right: 8px;
+            letter-spacing: 1px;
+        }
+        .grade-badge {
+            font-size: 1.4em;
+            padding: 7px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            margin-left: 12px;
+            letter-spacing: 2px;
+            box-shadow: 0 2px 8px rgba(60,150,220,0.09);
+        }
+        .grade-A { background: #b4f2cd; color: #127915;}
+        .grade-B { background: #a9e4fa; color: #1468a3;}
+        .grade-C { background: #ffe082; color: #856214;}
+        .grade-D { background: #ffbcab; color: #b34f23;}
+        .grade-F { background: #fe8b8b; color: #a30000;}
+        .subject-table {
+            width: 98%;
+            margin: 30px auto 10px auto;
+            border-collapse: collapse;
+            background: #f9fbfd;
+            font-size: 1.15em;
+        }
+        .subject-table th, .subject-table td {
+            border: 1.5px solid #deedff;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .subject-table th {
+            background: #e0f1ff;
+            color: #208abd;
+            font-size: 1.19em;
+        }
+        .subject-table td {
+            color: #34455a;
+            font-size: 1.09em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: #208abd;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.23em;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+            padding: 10px 14px;
+        }
+        .back-link:hover {
+            color: #3399ff;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 25px 8px 20px 8px; }
+            .student-card { padding: 18px 8px; }
+            h1 { font-size: 1.2em; margin-bottom: 24px;}
+            .label, .grade-label { font-size: 1em; }
+            .value, .grade-badge, .subject-table th, .subject-table td { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if student %}
+            <h1>Student Details: <span style="color:#2276c7;">{{ student['student_name'] }}</span></h1>
+            <div class="student-card">
+                <div class="card-row">
+                    <span class="label">Roll Number:</span> <span class="value">{{ student['roll_no'] }}</span>
+                </div>
+                <div class="card-row">
+                    <span class="label">Registration ID:</span> <span class="value">{{ student['id'] }}</span>
+                </div>
+                <div class="card-row">
+                    <span class="label">Attendance Percentage:</span> <span class="value">{{ student['attendance_percentage'] }}%</span>
+                </div>
+                <div class="card-row">
+                    <span class="label">Assignments Submitted:</span> <span class="value">{{ student['assignments_submitted'] }}</span>
+                </div>
+                <div class="card-row">
+                    <span class="grade-label">Predicted Grade:</span>
+                    <span class="grade-badge grade-{{ student['calculated_grade'] }}">{{ student['calculated_grade'] }}</span>
+                </div>
+            </div>
+            <table class="subject-table">
+                <tr>
+                    <th>Subject</th>
+                    <th>Marks</th>
+                </tr>
+                {% for subject in subject_marks %}
+                <tr>
+                    <td>{{ subject[0] }}</td>
+                    <td>{{ subject[1] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h1>No student found for: <span style="color:#2e60a1;">{{ query }}</span></h1>
+        {% endif %}
+        <a class="back-link" href="/">&#8592; Back to dashboard</a>
+    </div>
+</body>
+</html>

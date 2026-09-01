@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Grade Prediction App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Verdana, Arial, sans-serif;
+            background: linear-gradient(120deg, #3399ff 0%, #88e8fc 100%);
+            margin: 0;
+            min-height: 100vh;
+            padding: 0;
+        }
+        .container {
+            background: #fff;
+            max-width: 410px;
+            margin: 70px auto;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(44,104,255,0.12), 0 1.5px 6px rgba(0,0,0,0.09);
+            padding: 38px 34px 32px 34px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.1em;
+            font-weight: 700;
+            color: #2276c7;
+            text-shadow: 0 1px 7px rgba(44,104,255,0.13);
+            margin-top: 0;
+            margin-bottom: 15px;
+            letter-spacing: 0.8px;
+        }
+        .subtitle {
+            color: #444;
+            font-size: 1.17em;
+            margin-bottom: 30px;
+        }
+        input[type="file"] {
+            border: 2px dashed #25b8fa;
+            border-radius: 10px;
+            background: #f0faff;
+            font-size: 16px;
+            padding: 36px 12px 15px 12px;
+            margin-bottom: 18px;
+            width: 100%;
+            color: #208abd;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        input[type="file"]:hover {
+            border-color: #3399ff;
+        }
+        input[type="submit"] {
+            background: linear-gradient(90deg, #3399ff 60%, #26c6dc 100%);
+            color: #fff;
+            border: none;
+            padding: 13px 0;
+            font-size: 19px;
+            font-weight: bold;
+            border-radius: 9px;
+            width: 100%;
+            margin-top: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(44,104,255,0.07);
+            transition: background 0.3s;
+        }
+        input[type="submit"]:hover {
+            background: linear-gradient(90deg, #2276c7 60%, #25b8fa 100%);
+        }
+        .footer {
+            margin-top: 26px;
+            color: #5daef6;
+            font-size: 14px;
+        }
+        @media (max-width: 520px) {
+            .container {
+                padding: 19px 7px 18px 7px;
+            }
+            h1 {
+                font-size: 1.25em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Student Grade Predictor</h1>
+        <div class="subtitle">Easily upload your class Excel or CSV file to analyze grades, attendance, and assignment progress.</div>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".xlsx,.csv" required>
+            <input type="submit" value="Upload & Analyze">
+        </form>
+        <div class="footer">
+            Secure & Private · Fast Analytics · Beautiful Dashboard
+        </div>
+    </div>
+</body>
+</html>
